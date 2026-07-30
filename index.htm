@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penugasan Matematika Lanjut - Persamaan Lingkaran</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Konfigurasi MathJax (Wajib Sebelum Script MathJax) -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <!-- Script MathJax v3 -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .question-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .question-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen pb-20">
+
+    <!-- Header -->
+    <header class="bg-indigo-700 text-white py-8 shadow-lg mb-8">
+        <div class="container mx-auto px-6">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Penugasan Matematika Tingkat Lanjut</h1>
+            <p class="text-indigo-100 text-lg">Materi: Persamaan Lingkaran | Kelas XII</p>
+            <div class="mt-4 flex flex-wrap gap-3 text-sm">
+                <span class="bg-indigo-600 px-3 py-1 rounded-full border border-indigo-400">Pusat $O(0,0)$</span>
+                <span class="bg-indigo-600 px-3 py-1 rounded-full border border-indigo-400">Pusat $P(a,b)$</span>
+                <span class="bg-purple-600 px-3 py-1 rounded-full border border-purple-400 font-semibold">Penalaran HOTS</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Informasi & Instruksi Pengerjaan -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-8">
+            <div class="bg-indigo-50 border-b border-indigo-100 px-6 py-4">
+                <h2 class="text-lg font-bold text-indigo-900 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Petunjuk Pengerjaan Tugas Mandiri
+                </h2>
+            </div>
+            <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Alokasi Paket -->
+                <div class="md:col-span-2 space-y-3">
+                    <h3 class="font-semibold text-gray-800 text-sm uppercase tracking-wide">Pembagian Paket Soal Berdasarkan Nomor Urut Presensi:</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
+                        <div class="bg-indigo-50/50 border border-indigo-100 p-2.5 rounded-lg">
+                            <span class="font-bold text-indigo-700 block">Paket 1</span>
+                            <span class="text-gray-600">Siswa No. 1 – 5</span>
+                        </div>
+                        <div class="bg-indigo-50/50 border border-indigo-100 p-2.5 rounded-lg">
+                            <span class="font-bold text-indigo-700 block">Paket 2</span>
+                            <span class="text-gray-600">Siswa No. 6 – 10</span>
+                        </div>
+                        <div class="bg-indigo-50/50 border border-indigo-100 p-2.5 rounded-lg">
+                            <span class="font-bold text-indigo-700 block">Paket 3</span>
+                            <span class="text-gray-600">Siswa No. 11 – 15</span>
+                        </div>
+                        <div class="bg-indigo-50/50 border border-indigo-100 p-2.5 rounded-lg">
+                            <span class="font-bold text-indigo-700 block">Paket 4</span>
+                            <span class="text-gray-600">Siswa No. 16 – 20</span>
+                        </div>
+                        <div class="bg-indigo-50/50 border border-indigo-100 p-2.5 rounded-lg sm:col-span-2">
+                            <span class="font-bold text-indigo-700 block">Paket 5</span>
+                            <span class="text-gray-600">Siswa No. 21 – 27</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aturan Pengumpulan -->
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg space-y-2 text-sm text-amber-900">
+                    <h3 class="font-bold text-amber-950 uppercase tracking-wide">Ketentuan Pengumpulan:</h3>
+                    <ul class="list-disc list-inside space-y-1.5 text-gray-700">
+                        <li>Dikerjakan secara mandiri di <strong>Buku Tugas</strong> masing-masing.</li>
+                        <li>Sertakan <strong>langkah penyelesaian/cara</strong> secara sistematis.</li>
+                        <li>Wajib dikumpulkan di meja guru pada <strong>akhir jam pembelajaran</strong> hari ini.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex flex-wrap border-b border-gray-200 mb-8 gap-2">
+            <button onclick="showTab('paket1')" id="btn-paket1" class="tab-btn px-5 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-indigo-600 transition-all active-tab">Paket 1 <span class="text-xs font-normal text-gray-400 block sm:inline">(No. 1-5)</span></button>
+            <button onclick="showTab('paket2')" id="btn-paket2" class="tab-btn px-5 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-indigo-600 transition-all">Paket 2 <span class="text-xs font-normal text-gray-400 block sm:inline">(No. 6-10)</span></button>
+            <button onclick="showTab('paket3')" id="btn-paket3" class="tab-btn px-5 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-indigo-600 transition-all">Paket 3 <span class="text-xs font-normal text-gray-400 block sm:inline">(No. 11-15)</span></button>
+            <button onclick="showTab('paket4')" id="btn-paket4" class="tab-btn px-5 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-indigo-600 transition-all">Paket 4 <span class="text-xs font-normal text-gray-400 block sm:inline">(No. 16-20)</span></button>
+            <button onclick="showTab('paket5')" id="btn-paket5" class="tab-btn px-5 py-3 font-semibold text-gray-500 border-b-2 border-transparent hover:text-indigo-600 transition-all">Paket 5 <span class="text-xs font-normal text-gray-400 block sm:inline">(No. 21-27)</span></button>
+        </div>
+
+        <!-- Container Soal -->
+        <div id="soal-content">
+            
+            <!-- Paket 1 -->
+            <div id="paket1" class="tab-content active space-y-6">
+                <div class="flex justify-between items-center border-b pb-3 border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800">Daftar Soal - Paket 1</h2>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Siswa Presensi No. 1 - 5</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">1. Tentukan persamaan lingkaran yang berpusat di $O(0,0)$ dan memiliki jari-jari $r = 6$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">2. Tentukan titik pusat dan jari-jari dari lingkaran dengan persamaan $x^2 + y^2 = 49$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">3. Tentukan persamaan lingkaran yang berpusat di $P(2, 5)$ dan berjari-jari $3$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">4. Tentukan persamaan lingkaran yang berpusat di $P(-1, 3)$ dan melalui titik $(2, 7)$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">5. Tentukan titik pusat dan jari-jari dari lingkaran $(x+4)^2 + (y-1)^2 = 20$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">6. Tentukan persamaan lingkaran yang berpusat di $O(0,0)$ dan menyinggung garis $x = -4$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">7. Tentukan persamaan lingkaran yang berpusat di $P(2, 3)$ dan menyinggung sumbu $X$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">8. Tentukan persamaan lingkaran yang berpusat di $(-3, 4)$ dan menyinggung garis $y = 1$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">9. Stasiun pemancar sinyal radar terletak di titik koordinat $(2, -1)$ dan memiliki jangkauan sinyal radius $10\text{ km}$. Sebuah pesawat berada di lokasi $(8, 7)$. Apakah pesawat tersebut terdeteksi oleh radar? Buktikan dengan perhitungan jarak/persamaan lingkaran!</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">10. Tentukan persamaan lingkaran yang berpusat pada garis $y = 2x$ di Kuadran I, memiliki jari-jari $5$, dan menyinggung sumbu $Y$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket 2 -->
+            <div id="paket2" class="tab-content space-y-6">
+                <div class="flex justify-between items-center border-b pb-3 border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800">Daftar Soal - Paket 2</h2>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Siswa Presensi No. 6 - 10</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">1. Tentukan persamaan lingkaran berpusat di $O(0,0)$ dengan diameter $10$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">2. Tunjukkan apakah titik $(3, 4)$ terletak di dalam, pada, atau di luar lingkaran $x^2 + y^2 = 25$!</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">3. Tuliskan persamaan lingkaran dengan pusat $(-3, -4)$ dan jari-jari $5$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">4. Tentukan persamaan lingkaran yang pusatnya di $O(0,0)$ dan melalui titik $(5, -12)$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">5. Tentukan persamaan lingkaran yang berpusat di $(4, -2)$ dan menyinggung sumbu $Y$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">6. Tentukan nilai $k$ ($k > 0$) jika titik $(k, -2)$ terletak pada lingkaran $x^2 + y^2 = 13$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">7. Tentukan persamaan lingkaran jika segmen garis yang menghubungkan titik $A(1, 2)$ dan $B(5, 6)$ bertindak sebagai diameternya.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">8. Tentukan persamaan lingkaran yang konsentris (sepusat) dengan $(x-1)^2 + (y+2)^2 = 16$, tetapi memiliki luas dua kali lipat dari luas lingkaran tersebut.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">9. Sebuah lampu taman dipasang pada pusat $P(3, -2)$ dan memancarkan cahaya berbentuk lingkaran sejauh $13\text{ meter}$. Seseorang berjalan pada lintasan garis lurus $y = 10$. Tentukan rentang nilai $x$ saat orang tersebut terkena paparan sinar lampu!</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">10. Tentukan persamaan lingkaran yang menyinggung sumbu $X$ positif dan sumbu $Y$ negatif sekaligus, serta menyinggung garis $x = 6$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket 3 -->
+            <div id="paket3" class="tab-content space-y-6">
+                <div class="flex justify-between items-center border-b pb-3 border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800">Daftar Soal - Paket 3</h2>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Siswa Presensi No. 11 - 15</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">1. Tentukan panjang jari-jari dari lingkaran $x^2 + y^2 = 144$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">2. Tuliskan persamaan lingkaran dengan pusat $O(0,0)$ yang melalui titik $(3, 0)$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">3. Tentukan pusat dan jari-jari lingkaran dari $(x-7)^2 + (y+2)^2 = 64$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">4. Tentukan persamaan lingkaran yang berpusat di $O(0,0)$ dan menyinggung garis $y = 5$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">5. Tentukan persamaan lingkaran yang berpusat di $(5, 2)$ dan menyinggung sumbu $X$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">6. Tentukan persamaan lingkaran yang berpusat di $(1, 2)$ dan melalui titik $(4, 6)$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">7. Tentukan jarak antara titik asal $O(0,0)$ dengan pusat lingkaran $(x-4)^2 + (y-3)^2 = 25$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">8. Tentukan persamaan lingkaran berpusat di $(-2, 3)$ dan menyinggung garis horizontal $y = -1$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">9. Sebuah kolam retensi air berpusat di $P(-1, 2)$ dengan batas tepi berbentuk lingkaran berjari-jari $5\text{ meter}$. Pengelola akan memasang pagar lurus di sebelah utara kolam yang berjarak sejauh $2\text{ meter}$ dari tepi luar kolam terdekat. Tentukan persamaan garis posisi pagar tersebut!</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">10. Tentukan persamaan lingkaran yang berpusat di titik $(2, -3)$ dan menyinggung garis miring $3x + 4y - 4 = 0$. (Gunakan rumus jarak titik ke garis).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket 4 -->
+            <div id="paket4" class="tab-content space-y-6">
+                <div class="flex justify-between items-center border-b pb-3 border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800">Daftar Soal - Paket 4</h2>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Siswa Presensi No. 16 - 20</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">1. Tentukan persamaan lingkaran berpusat di $O(0,0)$ dengan jari-jari $r = \sqrt{7}$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">2. Tentukan titik pusat dan jari-jari dari lingkaran $x^2 + y^2 = 16$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">3. Persamaan lingkaran dengan pusat $(2, -3)$ dan jari-jari $4$ adalah...</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">4. Tentukan persamaan lingkaran yang berpusat di $(-2, 5)$ dan melalui titik asal $O(0,0)$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">5. Tentukan persamaan lingkaran yang pusatnya di $O(0,0)$ dan menyinggung garis $x = 10$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">6. Lingkaran $(x-a)^2 + (y-b)^2 = 81$ menyinggung sumbu $Y$. Tentukan nilai dari $|a|$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">7. Tentukan kedudukan posisi titik $(5, -1)$ terhadap lingkaran $(x-2)^2 + (y+1)^2 = 16$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">8. Tentukan persamaan lingkaran yang berpusat di $(3, 1)$ dan menyinggung garis $x + y - 8 = 0$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">9. Pemancar Wi-Fi di sebuah gedung ditempatkan pada posisi $P(1, 4)$ dengan jangkauan sinyal beradius $5\text{ meter}$. Seseorang berjalan melewati ruangan sepanjang lintasan lurus $y = x + 1$. Hitunglah panjang lintasan jalur yang ditempuh orang tersebut selama tetap terhubung sinyal Wi-Fi!</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">10. Tentukan semua kemungkinan persamaan lingkaran yang pusatnya terletak pada sumbu $X$, melalui titik $(2, 3)$, dan memiliki jari-jari $5$.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paket 5 -->
+            <div id="paket5" class="tab-content space-y-6">
+                <div class="flex justify-between items-center border-b pb-3 border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800">Daftar Soal - Paket 5</h2>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Siswa Presensi No. 21 - 27</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">1. Persamaan lingkaran dengan pusat $O(0,0)$ dan jari-jari $2\sqrt{5}$ adalah...</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">2. Tentukan titik pusat dan jari-jari dari lingkaran $(x+5)^2 + (y-9)^2 = 100$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2.5 py-1 rounded">Easy</span>
+                        <p class="mt-3 text-gray-800">3. Tentukan apakah titik asal $O(0,0)$ berada di dalam, pada, atau di luar lingkaran $x^2 + y^2 = 10$!</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">4. Tentukan persamaan lingkaran dengan pusat $(-1, -1)$ dan melalui titik $(1, 1)$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">5. Tentukan persamaan lingkaran yang berpusat di $(3, 4)$ dan menyinggung garis $y = -1$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded">Medium</span>
+                        <p class="mt-3 text-gray-800">6. Tuliskan persamaan lingkaran yang berpusat di $O(0,0)$ dan memiliki luas daerah $16\pi$.</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">7. Sebuah lingkaran berpusat di $(2, 3)$ dan menyinggung garis $x + y - 1 = 0$. Hitunglah panjang jari-jari lingkaran tersebut!</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <span class="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded">Hard</span>
+                        <p class="mt-3 text-gray-800">8. Tentukan persamaan lingkaran yang menyinggung sumbu $X$ di titik $(3, 0)$ dan memiliki jari-jari $4$ (di Kuadran I).</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">9. Sebuah gir roda mesin berbentuk lingkaran memiliki persamaan $(x-2)^2 + (y-3)^2 = 25$. Sebuah rantai penghubung dipasang menyinggung gir tersebut secara tegak lurus pada garis vertikal $x = 7$. Tentukan titik singgung tepat antara rantai dan gir tersebut!</p>
+                    </div>
+                    <div class="question-card bg-white p-6 rounded-xl shadow-sm border border-purple-200">
+                        <span class="text-xs font-bold uppercase tracking-wider text-purple-700 bg-purple-100 px-2.5 py-1 rounded">HOTS</span>
+                        <p class="mt-3 text-gray-800">10. Terdapat dua buah lingkaran $L_1: x^2 + y^2 = 9$ dan $L_2: (x-8)^2 + (y-6)^2 = r^2$. Tentukan nilai jari-jari $r$ agar lingkaran $L_1$ dan $L_2$ saling bersinggungan di luar!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function showTab(tabId) {
+            // Sembunyikan semua konten tab
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Nonaktifkan style semua tombol tab
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('text-indigo-600', 'border-indigo-600');
+                btn.classList.add('text-gray-500', 'border-transparent');
+            });
+
+            // Tampilkan tab yang dipilih
+            document.getElementById(tabId).classList.add('active');
+
+            // Aktifkan style tombol yang dipilih
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('text-gray-500', 'border-transparent');
+            activeBtn.classList.add('text-indigo-600', 'border-indigo-600');
+
+            // Paksa MathJax render ulang rumus di tab yang baru terbuka
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise();
+            }
+        }
+
+        // Jalankan tab pertama saat loaded
+        window.onload = () => showTab('paket1');
+    </script>
+</body>
+</html>
